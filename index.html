@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Power Data Center Map — Global GW Tracker</title>
+  <meta name="description" content="Interactive map and timeline tracking all major AI data centers worldwide, their power capacity in GW/MW, and key industry events.">
+
+  <!-- Fonts -->
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <svg class="logo-icon" viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AI Power DC Map">
+          <rect x="2" y="2" width="36" height="36" rx="8" stroke="currentColor" stroke-width="2"/>
+          <circle cx="20" cy="16" r="5" stroke="#3b82f6" stroke-width="2"/>
+          <path d="M12 28 L20 22 L28 28" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="22" x2="20" y2="32" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="28" r="2" fill="#8b5cf6"/>
+          <circle cx="28" cy="28" r="2" fill="#ef4444"/>
+        </svg>
+        <div>
+          <h1 class="logo-title">AI Power DC Map</h1>
+          <span class="logo-sub">Global Data Center GW Tracker</span>
+        </div>
+      </div>
+      <div class="header-stats" id="headerStats"></div>
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="filters-inner">
+      <div class="filter-group">
+        <span class="filter-label">Category:</span>
+        <div class="filter-chips" id="categoryFilters"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Status:</span>
+        <div class="filter-chips" id="statusFilters"></div>
+      </div>
+      <div class="filter-group search-group">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search company or location..." aria-label="Search data centers">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content: Map + Sidebar -->
+  <main class="main-content">
+    <!-- Map -->
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="map-legend" id="mapLegend"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-title">Data Centers</h2>
+        <span class="sidebar-count" id="dcCount">0</span>
+      </div>
+      <div class="sidebar-tabs">
+        <button class="tab active" data-tab="list">List</button>
+        <button class="tab" data-tab="semis">Semiconductors</button>
+      </div>
+      <div class="sidebar-content" id="sidebarContent"></div>
+    </aside>
+  </main>
+
+  <!-- Timeline -->
+  <section class="timeline-section" id="timelineSection">
+    <div class="timeline-header">
+      <h2 class="section-title">AI Data Center Timeline</h2>
+      <p class="section-subtitle">Key events shaping the AI infrastructure landscape. Hover over markers for details.</p>
+    </div>
+    <div class="timeline-container" id="timelineContainer">
+      <div class="timeline-track" id="timelineTrack">
+        <div class="timeline-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="statTotalGW">0</div>
+        <div class="stat-label">Total GW Tracked</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statOperational">0</div>
+        <div class="stat-label">Operational GW</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statConstruction">0</div>
+        <div class="stat-label">Under Construction GW</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statSites">0</div>
+        <div class="stat-label">Total Sites</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Data sourced from company announcements, SEC filings, BloombergNEF, and industry reports. Last updated March 2026.</p>
+    <p class="footer-note">Power figures represent planned/contracted capacity. Actual operational capacity may differ. This tracker is for informational purposes only.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
