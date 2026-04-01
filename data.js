@@ -1,5 +1,5 @@
 // AI Data Center Map - Comprehensive Data
-// Last updated: March 2026
+// Last updated: April 2026 (Nebius expansion: 15 sites globally)
 
 const DATA_CENTERS = [
   // ═══════════════════════════════════════
@@ -116,9 +116,9 @@ const DATA_CENTERS = [
 
   // Nebius
   { id: "nebius-independence", name: "Nebius Independence AI Factory", company: "Nebius", category: "neocloud",
-    lat: 39.0911, lng: -94.4155, location: "Independence, Missouri, USA",
-    powerMW: 1200, powerGW: 1.2, status: "construction", onlineDate: "2027-01",
-    description: "Nebius's first gigawatt-scale AI factory. City Council approved Mar 2026. Up to 1.2 GW capacity. Connected to Independence Power & Light municipal utility.",
+    lat: 39.0836, lng: -94.3543, location: "Independence, Missouri, USA",
+    powerMW: 1200, powerGW: 1.2, status: "construction", onlineDate: "2028-01",
+    description: "Nebius's largest US AI factory. City Council approved Mar 2026. Up to 1.2 GW capacity across 400 acres, 10+ buildings. $6.6B investment. New 250 MW power plant expanding to 1,100 MW by 2029. Construction starts summer 2026, completion expected 2028.",
     chips: "NVIDIA GB200/GB300" },
 
   { id: "nebius-kc", name: "Nebius Kansas City", company: "Nebius", category: "neocloud",
@@ -126,6 +126,78 @@ const DATA_CENTERS = [
     powerMW: 40, powerGW: 0.04, status: "operational", onlineDate: "2025-01",
     description: "US gateway facility. 5 MW live (Q1 2025), expanding to 40 MW. Anchor tenant at Patmos AI Campus. Supports enterprise inference workloads.",
     chips: "NVIDIA Blackwell" },
+
+  { id: "nebius-vineland", name: "Nebius New Jersey (Vineland)", company: "Nebius", category: "neocloud",
+    lat: 39.4863, lng: -75.0260, location: "Vineland, New Jersey, USA",
+    powerMW: 300, powerGW: 0.3, status: "operational", onlineDate: "2025-06",
+    description: "First major US AI data center. ~2.6M sqft. Built by DataOne with Nebius-designed infrastructure. Behind-the-meter islanded microgrid. 300-400 MW capacity. $17B Microsoft contract. 3+ data rooms operational. Liquid-cooled, 100+ kW/rack.",
+    chips: "NVIDIA Blackwell", partner: "DataOne, Microsoft" },
+
+  { id: "nebius-birmingham", name: "Nebius Birmingham BHM01", company: "Nebius", category: "neocloud",
+    lat: 33.5207, lng: -86.8025, location: "Birmingham, Alabama, USA",
+    powerMW: 300, powerGW: 0.3, status: "planned", onlineDate: "2027-01",
+    description: "Southeast US anchor site. Phased development toward ~300 MW total campus capacity on 80-acre site in Oxmoor area. Brownfield-to-AI-factory conversion. Permitting underway.",
+    chips: "NVIDIA Blackwell" },
+
+  { id: "nebius-minnesota", name: "Nebius Minnesota", company: "Nebius", category: "neocloud",
+    lat: 44.9778, lng: -93.2650, location: "Minneapolis, Minnesota, USA",
+    powerMW: 100, powerGW: 0.1, status: "planned", onlineDate: "2027-01",
+    description: "Planned US expansion site in Minneapolis area. Part of Nebius's goal to reach 16 global data center locations by end of 2026.",
+    chips: "NVIDIA GPU" },
+
+  { id: "nebius-oklahoma", name: "Nebius Oklahoma", company: "Nebius", category: "neocloud",
+    lat: 35.4676, lng: -97.5164, location: "Oklahoma, USA",
+    powerMW: 100, powerGW: 0.1, status: "planned", onlineDate: "2027-01",
+    description: "Planned US expansion site. Part of Nebius's strategy to establish 16 global data center locations by end of 2026.",
+    chips: "NVIDIA GPU" },
+
+  { id: "nebius-mantsala", name: "Nebius Mäntsälä", company: "Nebius", category: "neocloud",
+    lat: 60.6358, lng: 25.5181, location: "Mäntsälä, Finland",
+    powerMW: 75, powerGW: 0.075, status: "operational", onlineDate: "2014-01",
+    description: "Nebius's flagship European data center since 2014. Tripled to 75 MW capacity. Hosts ISEG supercomputer (16th on Top500). Exports heat to local district heating. Up to 60,000 GPUs. Part of Meta contract. 100% renewable energy.",
+    chips: "NVIDIA H100/H200/Blackwell" },
+
+  { id: "nebius-lappeenranta", name: "Nebius Lappeenranta", company: "Nebius", category: "neocloud",
+    lat: 61.0587, lng: 28.1887, location: "Lappeenranta, Finland",
+    powerMW: 310, powerGW: 0.31, status: "construction", onlineDate: "2027-01",
+    description: "Nebius's largest facility outside the US. 310 MW AI data center campus. $10B+ estimated value. Built by Polarnode. Covers ~10% of Nebius's contracted capacity. One of Europe's largest AI-dedicated facilities. Phased delivery from 2027.",
+    chips: "NVIDIA GPU" },
+
+  { id: "nebius-bethune", name: "Nebius Béthune (Lille)", company: "Nebius", category: "neocloud",
+    lat: 50.5299, lng: 2.6408, location: "Béthune, Pas-de-Calais, France",
+    powerMW: 240, powerGW: 0.24, status: "construction", onlineDate: "2026-12",
+    description: "One of Europe's largest AI factories. 240 MW on former Bridgestone tyre plant site. 26,000 sqm. Phase 1 late summer 2026, ~120 MW by end 2026, full 240 MW by end 2027. 132-142 kW/rack, Blackwell NVL72 optimized. Colocation with Azur Datacenter.",
+    chips: "NVIDIA Blackwell" },
+
+  { id: "nebius-paris", name: "Nebius Paris (Equinix PA10)", company: "Nebius", category: "neocloud",
+    lat: 48.9362, lng: 2.3574, location: "Saint-Denis, Paris, France",
+    powerMW: 10, powerGW: 0.01, status: "operational", onlineDate: "2024-11",
+    description: "Colocation at Equinix PA10 campus in Saint-Denis. First European site with NVIDIA H200 Tensor Core GPUs. First facility equipped solely with Nebius-designed servers.",
+    chips: "NVIDIA H200" },
+
+  { id: "nebius-longcross", name: "Nebius UK (Longcross)", company: "Nebius", category: "neocloud",
+    lat: 51.3838, lng: -0.5786, location: "Longcross Park, Surrey, UK",
+    powerMW: 16, powerGW: 0.016, status: "operational", onlineDate: "2025-11",
+    description: "Nebius's first UK data center at Ark Data Centres' Longcross Park. 3 data halls, 126 racks, 16 MW. 11 PB storage. NVIDIA Blackwell Ultra GPUs. Advanced liquid cooling, low-latency InfiniBand Q-X800 networking.",
+    chips: "NVIDIA Blackwell Ultra", partner: "Ark Data Centres" },
+
+  { id: "nebius-keflavik", name: "Nebius Keflavik (Iceland)", company: "Nebius", category: "neocloud",
+    lat: 63.9993, lng: -22.5558, location: "Keflavik, Iceland",
+    powerMW: 10, powerGW: 0.01, status: "operational", onlineDate: "2025-06",
+    description: "Colocation with Verne in Keflavik. 10 MW compute cluster. 100% renewable hydroelectric and geothermal energy. Natural cooling advantages in subarctic climate.",
+    chips: "NVIDIA GPU", partner: "Verne" },
+
+  { id: "nebius-modiin", name: "Nebius Modi'in (Israel)", company: "Nebius", category: "neocloud",
+    lat: 31.8928, lng: 34.8713, location: "Modi'in, Israel",
+    powerMW: 8, powerGW: 0.008, status: "operational", onlineDate: "2025-09",
+    description: "8 MW colocation at Mega Or/Mega DC facility. Deployed 4,000 NVIDIA GPUs. Hosts part of Israel's national supercomputer via Israel Innovation Authority. Expanding with 80 MW across Masmiyya (22 MW) and Beit Shemesh (58 MW).",
+    chips: "NVIDIA B200", partner: "Mega Or/Mega DC" },
+
+  { id: "nebius-israel-expansion", name: "Nebius Israel Expansion", company: "Nebius", category: "neocloud",
+    lat: 31.7167, lng: 34.9875, location: "Masmiyya & Beit Shemesh, Israel",
+    powerMW: 80, powerGW: 0.08, status: "construction", onlineDate: "2026-09",
+    description: "Major 80 MW expansion across two Mega Or sites: 22 MW in Masmiyya, 58 MW in Beit Shemesh. $880M investment. 5-year lease. Expandable to 64 MW (Masmiyya) and 222 MW (Beit Shemesh). Delivery Q3 2026 through Q1 2027.",
+    chips: "NVIDIA GPU", partner: "Mega Or/Mega DC" },
 
   // CoreWeave
   { id: "coreweave-us", name: "CoreWeave US Network", company: "CoreWeave", category: "neocloud",
@@ -437,9 +509,13 @@ const TIMELINE_EVENTS = [
     description: "Google partners with DTE Energy for 2.7 GW of new resources in suburban Detroit. Includes 1.6 GW solar, 400 MW storage, 300 MW clean resources, 50 MW long-duration storage.",
     impact: "high", companies: ["Google Cloud"] },
 
-  { date: "2026-03-22", title: "Meta-Nebius $27B Infrastructure Deal", category: "hyperscaler",
-    description: "Meta commits $27B to Nebius for AI infrastructure. Major deal reshaping data center market dynamics.",
-    impact: "high", companies: ["Meta Platforms", "Nebius"] },
+  { date: "2026-03-22", title: "Meta-Nebius $27B Infrastructure Deal", category: "neocloud",
+    description: "Meta commits $27B to Nebius for AI infrastructure over 5 years. Includes $12B of NVIDIA Vera Rubin chip capacity from 2027. Deal value exceeds Nebius's prior market valuation. Cements Nebius as leading neocloud alongside CoreWeave.",
+    impact: "high", companies: ["Meta Platforms", "Nebius", "NVIDIA"] },
+
+  { date: "2026-03-31", title: "Nebius 310 MW Finland AI Factory", category: "neocloud",
+    description: "Nebius announces 310 MW AI data center in Lappeenranta, Finland — its largest outside the US. $10B+ estimated value. Built by Polarnode. One of Europe's largest AI-dedicated facilities. Covers ~10% of Nebius's 3 GW target.",
+    impact: "high", companies: ["Nebius", "Polarnode"] },
 
   { date: "2026-03-25", title: "23 GW Under Construction Globally", category: "hyperscaler",
     description: "BloombergNEF reports 23+ GW of data center capacity under construction at 831 sites. 75% in the US. Top 14 operators' CapEx nears $750B in 2026.",
@@ -453,7 +529,7 @@ const TIMELINE_EVENTS = [
 // Company metadata for color coding and display
 const COMPANY_CATEGORIES = {
   hyperscaler: { label: "Hyperscalers", color: "#3b82f6", companies: ["Amazon Web Services", "Microsoft Azure", "Google Cloud", "Meta Platforms", "Oracle Cloud", "Alibaba Cloud", "IBM Cloud", "Huawei"] },
-  neocloud: { label: "Neoclouds", color: "#8b5cf6", companies: ["Nebius", "CoreWeave", "IREN", "Applied Digital", "Lambda Labs", "Nscale"] },
+  neocloud: { label: "Neoclouds", color: "#8b5cf6", companies: ["Nebius", "CoreWeave", "IREN", "Applied Digital", "Lambda Labs", "Nscale", "Mega Or/Mega DC"] },
   "ai-independent": { label: "AI Independent", color: "#f59e0b", companies: ["xAI", "Celestica", "Palantir", "Lumentum", "Crusoe Energy", "DataVolt", "Anthropic", "Scale AI", "Inflection AI"] },
   sovereign: { label: "Sovereign/Gov", color: "#10b981", companies: ["HUMAIN", "UK Government", "AdaniConneX", "Reliance Jio", "DAMAC Digital", "Government of Canada", "G42", "SAKURA Internet", "Scaleway", "China Mobile"] },
   stargate: { label: "Stargate Project", color: "#ef4444", companies: ["Stargate", "OpenAI", "SoftBank", "Oracle"] },
