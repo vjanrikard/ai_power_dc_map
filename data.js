@@ -369,7 +369,7 @@ const DATA_CENTERS = [
     chips: "Optical transceivers" },
 
   // Crusoe Energy
-  { id: "crusoe-texas", name: "Crusoe AI Data Center", company: "Crusoe Energy", category: "ai-independent",
+  { id: "crusoe-texas", name: "Crusoe AI Data Center", company: "Crusoe Energy", category: "neocloud",
     lat: 32.0, lng: -100.5, location: "West Texas, USA",
     powerMW: 200, powerGW: 0.2, status: "construction", onlineDate: "2026-06",
     description: "AI cloud powered by stranded energy. Stargate partner. Uses flared natural gas and renewable sources for carbon-reduced AI compute.",
@@ -595,8 +595,8 @@ const TIMELINE_EVENTS = [
 // Company metadata for color coding and display
 const COMPANY_CATEGORIES = {
   hyperscaler: { label: "Hyperscalers", color: "#3b82f6", companies: ["Amazon Web Services", "Microsoft Azure", "Google Cloud", "Meta Platforms", "Oracle Cloud", "Alibaba Cloud", "IBM Cloud", "Huawei"] },
-  neocloud: { label: "Neoclouds", color: "#8b5cf6", companies: ["Nebius", "CoreWeave", "IREN", "Applied Digital", "Lambda Labs", "Nscale", "Mega Or/Mega DC"] },
-  "ai-independent": { label: "AI Independent", color: "#f59e0b", companies: ["xAI", "Celestica", "Palantir", "Lumentum", "Crusoe Energy", "DataVolt", "Anthropic", "Scale AI", "Inflection AI"] },
+  neocloud: { label: "Neoclouds", color: "#f59e0b", companies: ["Nebius", "CoreWeave", "IREN", "Applied Digital", "Lambda Labs", "Nscale", "Mega Or/Mega DC", "Crusoe Energy", "Civo", "Vultr"] },
+  "ai-independent": { label: "AI Independent", color: "#8b5cf6", companies: ["xAI", "Celestica", "Palantir", "Lumentum", "DataVolt", "Anthropic", "Scale AI", "Inflection AI"] },
   sovereign: { label: "Sovereign/Gov", color: "#10b981", companies: ["HUMAIN", "UK Government", "AdaniConneX", "Reliance Jio", "DAMAC Digital", "Government of Canada", "G42", "SAKURA Internet", "Scaleway", "China Mobile"] },
   stargate: { label: "Stargate Project", color: "#ef4444", companies: ["Stargate", "OpenAI", "SoftBank", "Oracle"] },
 };
