@@ -35,19 +35,17 @@
   function initTheme() {
     const toggle = document.querySelector('[data-theme-toggle]');
     const root = document.documentElement;
-    const storedTheme = localStorage.getItem('ai-power-dc-theme');
-    let theme = storedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const theme = 'dark';
     root.setAttribute('data-theme', theme);
     setMapTiles(theme);
-    updateThemeIcon(toggle, theme);
 
-    toggle.addEventListener('click', () => {
-      theme = theme === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', theme);
-      localStorage.setItem('ai-power-dc-theme', theme);
+    if (toggle) {
       updateThemeIcon(toggle, theme);
-      setMapTiles(theme);
-    });
+      toggle.disabled = true;
+      toggle.title = 'Dark theme is locked for this build';
+      toggle.style.opacity = '0.45';
+      toggle.style.cursor = 'not-allowed';
+    }
   }
 
   function updateThemeIcon(toggle, theme) {
@@ -228,11 +226,13 @@
     const catLabel = COMPANY_CATEGORIES[dc.category]?.label || dc.category;
     const powerDisplay = dc.powerGW >= 1 ? `${dc.powerGW.toFixed(1)} GW` : `${dc.powerMW} MW`;
     const dateStr = dc.onlineDate ? formatDate(dc.onlineDate) : 'TBD';
+    const flag = getCountryFlag(dc.location);
+    const locationLabel = `${flag ? `${flag} ` : ''}${dc.location}`;
 
     return `<div class="popup-inner">
       <div class="popup-category" style="color:${catColor}">${catLabel}</div>
       <div class="popup-name">${dc.name}</div>
-      <div class="popup-company">${dc.company} — ${dc.location}</div>
+      <div class="popup-company">${dc.company} — ${locationLabel}</div>
       <div class="popup-meta">
         <div class="popup-meta-item">
           <span class="popup-meta-label">Power</span>
@@ -281,6 +281,8 @@
       const catColor = COMPANY_CATEGORIES[dc.category]?.color || '#999';
       const statusCfg = STATUS_CONFIG[dc.status];
       const powerDisplay = dc.powerGW >= 1 ? `${dc.powerGW.toFixed(1)} GW` : `${dc.powerMW} MW`;
+      const flag = getCountryFlag(dc.location);
+      const locationLabel = `${flag ? `${flag} ` : ''}${dc.location}`;
 
       return `<div class="dc-card" data-dc-id="${dc.id}">
         <div class="dc-card-header">
@@ -292,7 +294,7 @@
         </div>
         <div class="dc-card-meta">
           <span class="dc-card-status" style="color:${statusCfg.color}">${statusCfg.icon} ${statusCfg.label}</span>
-          <span>${dc.location}</span>
+          <span class="dc-card-location">${locationLabel}</span>
         </div>
       </div>`;
     }).join('');
@@ -572,6 +574,56 @@
     const d = new Date(dateStr + '-01');
     return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
   }
+
+  function getCountryFlag(location) {
+    const country = getCountryFromLocation(location);
+    const isoCode = COUNTRY_TO_ISO[country];
+    return isoCode ? isoToFlag(isoCode) : '';
+  }
+
+  function getCountryFromLocation(location) {
+    const trimmed = (location || '').trim();
+    if (!trimmed) return '';
+
+    if (/multiple\s+us\s+locations/i.test(trimmed)) return 'USA';
+
+    const parts = trimmed.split(',').map((part) => part.trim()).filter(Boolean);
+    const lastPart = parts[parts.length - 1];
+
+    if (/^US$/i.test(lastPart)) return 'USA';
+    if (/^UK$/i.test(lastPart)) return 'UK';
+
+    return lastPart;
+  }
+
+  function isoToFlag(isoCode) {
+    return isoCode
+      .toUpperCase()
+      .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+  }
+
+  const COUNTRY_TO_ISO = {
+    USA: 'US',
+    UK: 'GB',
+    China: 'CN',
+    France: 'FR',
+    Finland: 'FI',
+    Norway: 'NO',
+    Iceland: 'IS',
+    Israel: 'IL',
+    'Saudi Arabia': 'SA',
+    'South Korea': 'KR',
+    Japan: 'JP',
+    Germany: 'DE',
+    Sweden: 'SE',
+    Denmark: 'DK',
+    Spain: 'ES',
+    Italy: 'IT',
+    Canada: 'CA',
+    India: 'IN',
+    Singapore: 'SG',
+    UAE: 'AE'
+  };
 
   // ─── Start ───
   document.addEventListener('DOMContentLoaded', init);
