@@ -232,6 +232,18 @@ const DATA_CENTERS = [
     description: "430 MW AI Factory campus. Broke ground Jan 2026. Two 150 MW facilities across 500+ acres. Named Best Data Center in Americas 2025.",
     chips: "NVIDIA GPU" },
 
+  { id: "apld-polaris-forge1", name: "Applied Digital Polaris Forge 1", company: "Applied Digital", category: "neocloud",
+    lat: 46.0006, lng: -98.5250, location: "Ellendale, North Dakota, USA",
+    powerMW: 180, powerGW: 0.18, status: "operational", onlineDate: "2025-12",
+    description: "Ellendale AI/HPC campus listing (Site Code ELN). 180 MW capacity with liquid-cooling design. Datacentermap timeline notes first building reached operational stage in Dec 2025.",
+    chips: "NVIDIA GPU", partner: "CoreWeave" },
+
+  { id: "apld-polaris-forge2", name: "Applied Digital Polaris Forge 2", company: "Applied Digital", category: "neocloud",
+    lat: 46.9830, lng: -96.8890, location: "Harwood (Fargo area), North Dakota, USA",
+    powerMW: 280, powerGW: 0.28, status: "planned", onlineDate: "2026-12",
+    description: "Planned AI-focused campus near Harwood in Cass County. Datacentermap lists up to 280 MW with phased launch and full buildout expected by early 2027.",
+    chips: "NVIDIA GPU" },
+
   // Lambda Labs
   { id: "lambda-chicago", name: "Lambda AI Factory Chicago", company: "Lambda Labs", category: "neocloud",
     lat: 41.8781, lng: -87.6298, location: "Chicago, Illinois, USA",
@@ -244,6 +256,12 @@ const DATA_CENTERS = [
     powerMW: 50, powerGW: 0.05, status: "construction", onlineDate: "2026-10",
     description: "Taking capacity at Aligned Data Center DFW-04. 425,500 sqft. DeltaFlow liquid cooling up to 300 kW/rack. Vision: 3 GW+ total.",
     chips: "NVIDIA GB200" },
+
+  { id: "lambda-kansascity", name: "Lambda Kansas City", company: "Lambda Labs", category: "neocloud",
+    lat: 39.3045, lng: -94.7136, location: "Kansas City, Missouri, USA",
+    powerMW: 24, powerGW: 0.024, status: "planned", onlineDate: "2026-03",
+    description: "Lambda facility at 11155 N Airworld Dr. Datacentermap notes first phase announced at 24 MW with launch targeted for early 2026.",
+    chips: "NVIDIA GPU" },
 
   // Nscale
   { id: "nscale-glomfjord", name: "Nscale Glomfjord", company: "Nscale", category: "neocloud",
@@ -269,6 +287,12 @@ const DATA_CENTERS = [
     powerMW: 1200, powerGW: 1.2, status: "construction", onlineDate: "2027-01",
     description: "240 MW initial, expanding to 1.2 GW. Partnership with Ionic Digital. Direct-liquid cooling and rear-door heat-exchangers.",
     chips: "NVIDIA GPU", partner: "Ionic Digital" },
+
+  { id: "nscale-loughton", name: "Nscale Loughton", company: "Nscale", category: "neocloud",
+    lat: 51.6470, lng: 0.0550, location: "Loughton, Essex, UK",
+    powerMW: 50, powerGW: 0.05, status: "planned", onlineDate: "2026-10",
+    description: "Nscale's first UK site at Langston Road. Datacentermap describes 50 MW initial AI/HPC capacity with expansion potential to 90 MW and go-live target in Q4 2026.",
+    chips: "NVIDIA GB200" },
 
   // ═══════════════════════════════════════
   // AI INDEPENDENT POWER DATA CENTERS
