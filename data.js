@@ -206,6 +206,30 @@ const DATA_CENTERS = [
     description: "43 data centers with 850 MW active power (end 2025). Added 250 MW in Q4 2025 alone. Targeting 5 GW additional by 2030. Over 3 GW contracted.",
     chips: "NVIDIA H100/GB200" },
 
+  { id: "coreweave-hammond", name: "CoreWeave Hammond", company: "CoreWeave", category: "neocloud",
+    lat: 41.6142, lng: -87.4973, location: "Hammond, Indiana, USA",
+    powerMW: 180, powerGW: 0.18, status: "planned", onlineDate: "2027-12",
+    description: "180 MW AI data center at the Digital Crossroads campus (301 Digital Crossroads Dr). 450,000 sq ft on 25-acre site at former State Line Generating Plant. Developed with Decennial Group under a 20-year lease. Announced Jun 2025, operational target 2027 pending NIPSCO power agreement.",
+    chips: "NVIDIA GPU" },
+
+  { id: "coreweave-kenilworth", name: "CoreWeave Kenilworth", company: "CoreWeave", category: "neocloud",
+    lat: 40.6798, lng: -74.2946, location: "Kenilworth, New Jersey, USA",
+    powerMW: 100, powerGW: 0.1, status: "planned", onlineDate: "2026-12",
+    description: "AI data center at Northeast Science & Technology Center (2000 Galloping Hill Rd). 280,000 sq ft with over $1.2 billion committed. PSE&G upgrading local electrical infrastructure to support facility. Planned status per datacentermap.",
+    chips: "NVIDIA GPU" },
+
+  { id: "coreweave-lancaster", name: "CoreWeave Lancaster", company: "CoreWeave", category: "neocloud",
+    lat: 40.0379, lng: -76.3055, location: "Lancaster, Pennsylvania, USA",
+    powerMW: 400, powerGW: 0.4, status: "planned", onlineDate: "2027-12",
+    description: "$6 billion AI data center campus at 216 Greenfield Rd. Former printing press facilities totaling 2M+ sq ft across 144 acres being converted by Machine Investment Group. Co-funded by Blue Owl Capital and Chirisa Technology Parks. Announced Jul 2025 as one of CoreWeave's largest campus developments.",
+    chips: "NVIDIA GPU" },
+
+  { id: "coreweave-plano", name: "CoreWeave Plano", company: "CoreWeave", category: "neocloud",
+    lat: 33.0635, lng: -96.7495, location: "Plano, Texas, USA",
+    powerMW: 30, powerGW: 0.03, status: "operational", onlineDate: "2023-12",
+    description: "30 MW AI data center at Lincoln Rackhouse's 1000 Coit Rd building. 454,421 sq ft on 23.8-acre campus. $1.6 billion investment with 6-year Master Services Agreement. Four 14,000 sq ft data halls plus 50,000 sq ft powered shell space. Operational since end of 2023.",
+    chips: "NVIDIA GPU" },
+
   // IREN
   { id: "iren-childress", name: "IREN Horizon 1 (Childress)", company: "IREN", category: "neocloud",
     lat: 34.4265, lng: -100.2040, location: "Childress, Texas, USA",
