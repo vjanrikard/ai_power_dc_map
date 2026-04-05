@@ -232,7 +232,7 @@
     return `<div class="popup-inner">
       <div class="popup-category" style="color:${catColor}">${catLabel}</div>
       <div class="popup-name">${dc.name}</div>
-      <div class="popup-company">${dc.company} — ${locationLabel}</div>
+      <div class="popup-company">${dc.company} — <span class="popup-location">${locationLabel}</span></div>
       <div class="popup-meta">
         <div class="popup-meta-item">
           <span class="popup-meta-label">Power</span>

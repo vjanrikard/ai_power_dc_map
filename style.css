@@ -358,6 +358,11 @@ body {
   margin-bottom: var(--space-3);
 }
 
+.popup-location {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .popup-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -572,6 +577,9 @@ body {
 }
 
 .dc-card-location {
+  color: var(--text) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   line-height: 1.3;
 }
 
