@@ -7,6 +7,7 @@
 
   // State
   let map;
+  let tileLayer;
   let markers = [];
   let activeFilters = {
     categories: new Set(Object.keys(COMPANY_CATEGORIES)),
@@ -34,24 +35,44 @@
   function initTheme() {
     const toggle = document.querySelector('[data-theme-toggle]');
     const root = document.documentElement;
-    let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark'; // default dark
+    const storedTheme = localStorage.getItem('ai-power-dc-theme');
+    let theme = storedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     root.setAttribute('data-theme', theme);
+    setMapTiles(theme);
+    updateThemeIcon(toggle, theme);
 
     toggle.addEventListener('click', () => {
       theme = theme === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', theme);
-      toggle.innerHTML = theme === 'dark'
-        ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
-        : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-      // Re-render map tiles for theme
-      if (map) {
-        map.eachLayer(l => { if (l._url) map.removeLayer(l); });
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-          maxZoom: 18
-        }).addTo(map);
-      }
+      localStorage.setItem('ai-power-dc-theme', theme);
+      updateThemeIcon(toggle, theme);
+      setMapTiles(theme);
     });
+  }
+
+  function updateThemeIcon(toggle, theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  }
+
+  function setMapTiles(theme) {
+    if (!map) return;
+
+    if (tileLayer) {
+      map.removeLayer(tileLayer);
+    }
+
+    const tileUrl = theme === 'dark'
+      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+    tileLayer = L.tileLayer(tileUrl, {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      maxZoom: 18
+    });
+
+    tileLayer.addTo(map);
   }
 
   // ─── Map ───
@@ -66,10 +87,8 @@
       worldCopyJump: true,
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      maxZoom: 18
-    }).addTo(map);
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    setMapTiles(currentTheme);
   }
 
   // ─── Filters ───
