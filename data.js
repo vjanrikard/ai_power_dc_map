@@ -249,6 +249,24 @@ const DATA_CENTERS = [
     description: "600 MW expansion site. Energization expected 2028. Direct fiber loop to Sweetwater 1. Total portfolio: 4.5 GW.",
     chips: "Next-gen" },
 
+  { id: "iren-prince-george", name: "IREN Prince George", company: "IREN", category: "neocloud",
+    lat: 53.9170, lng: -122.7497, location: "Prince George, British Columbia, Canada",
+    powerMW: 50, powerGW: 0.05, status: "operational", onlineDate: "2023-01",
+    description: "50 MW operational data center on a 12-acre freehold site (1144 Crocker Road). Powered entirely by BC Hydro renewable hydroelectricity. Supports 20+ full-time local jobs. Largest city in northern BC.",
+    chips: "NVIDIA GPU" },
+
+  { id: "iren-mackenzie", name: "IREN Mackenzie", company: "IREN", category: "neocloud",
+    lat: 55.2978, lng: -123.0915, location: "Mackenzie, British Columbia, Canada",
+    powerMW: 80, powerGW: 0.08, status: "operational", onlineDate: "2022-01",
+    description: "80 MW operational data center on an 11-acre freehold site (4900 Coquawaldy Rd). Powered by BC Hydro renewable hydroelectricity. Supports ~15 full-time jobs in a community historically impacted by mill closures.",
+    chips: "NVIDIA GPU" },
+
+  { id: "iren-canal-flats", name: "IREN Canal Flats", company: "IREN", category: "neocloud",
+    lat: 50.1500, lng: -115.7700, location: "Canal Flats, British Columbia, Canada",
+    powerMW: 30, powerGW: 0.03, status: "operational", onlineDate: "2021-01",
+    description: "30 MW operational data center on a 10-acre freehold site in the Canadian Rockies (9018 Grainger Rd). Connected to BC Hydro via IREN-owned 69kV substation. Dual fiber paths. Fabrication workshop supporting other IREN facilities.",
+    chips: "NVIDIA GPU" },
+
   // Applied Digital
   { id: "apld-deltaforge", name: "Applied Digital Delta Forge 1", company: "Applied Digital", category: "neocloud",
     lat: 32.5, lng: -90.0, location: "Southern US",
