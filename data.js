@@ -1,5 +1,5 @@
 // AI Data Center Map - Comprehensive Data
-// Last updated: April 2026 (Nebius expansion: 15 sites globally)
+// Last updated: April 2026 (Added: Meta El Paso, Crusoe Abilene 900MW, Nscale WV Monarch, Penzance WV, Google Wilbarger TX, Google Putnam WV, Deutsche Telekom Munich, Mistral AI Sweden)
 
 const DATA_CENTERS = [
   // ═══════════════════════════════════════
@@ -491,6 +491,57 @@ const DATA_CENTERS = [
     powerMW: 750, powerGW: 0.75, status: "construction", onlineDate: "2026-09",
     description: "Fast-build data center by SB Energy (SoftBank). Powered infrastructure for rapid deployment. Part of Stargate initiative.",
     chips: "NVIDIA GB200", partner: "SB Energy, OpenAI" },
+
+  // ═══════════════════════════════════════
+  // NEW ENTRIES — April 2026
+  // ═══════════════════════════════════════
+
+  { id: "meta-elpaso", name: "Meta El Paso AI Campus", company: "Meta Platforms", category: "hyperscaler",
+    lat: 31.8776, lng: -106.3744, location: "El Paso, Texas, USA",
+    powerMW: 1000, powerGW: 1.0, status: "construction", onlineDate: "2028-01",
+    description: "Meta's 29th data center, 3rd in Texas. Broke ground Oct 2025 on 1,000+ acres. Investment scaled from $1.5B to $10B in Mar 2026. Up to 5 phases of ~800,000 sqft. Closed-loop liquid cooling, near-zero operational water use. 300+ permanent jobs at full operation.",
+    chips: "NVIDIA Blackwell / Meta MTIA", partner: "El Paso Electric" },
+
+  { id: "crusoe-abilene", name: "Crusoe Abilene AI Campus", company: "Crusoe Energy", category: "neocloud",
+    lat: 32.4487, lng: -99.7331, location: "Abilene, Texas, USA",
+    powerMW: 900, powerGW: 0.9, status: "construction", onlineDate: "2027-06",
+    description: "900 MW AI campus at Lancium Clean Campus. Announced Apr 2026 for Microsoft AI workloads. Expands Stargate Site 1 (200 MW operational on same site). Direct-to-chip liquid cooling, up to 100,000 GPUs on unified fabric. 100% renewable via Lancium Smart Response.",
+    chips: "NVIDIA GB200+", partner: "Microsoft, Lancium" },
+
+  { id: "nscale-westvirginia", name: "Nscale Monarch AI Campus", company: "Nscale", category: "neocloud",
+    lat: 38.7704, lng: -82.0026, location: "Mason County, West Virginia, USA",
+    powerMW: 1350, powerGW: 1.35, status: "planned", onlineDate: "2028-01",
+    description: "Nscale's US flagship AI factory on 2,250 acres. Microsoft LOI for 1.35 GW of NVIDIA Vera Rubin NVL72 compute signed at GTC Mar 2026. US-first certified AI microgrid, scalable to 8 GW. Site acquired via AIPCorp/Fidelis New Energy. Carbon sequestration planned.",
+    chips: "NVIDIA Vera Rubin NVL72", partner: "Microsoft, NVIDIA, Caterpillar" },
+
+  { id: "penzance-wv", name: "Penzance Bedington Campus", company: "Penzance Management", category: "hyperscaler",
+    lat: 39.5512, lng: -77.9947, location: "Falling Waters, Berkeley County, West Virginia, USA",
+    powerMW: 600, powerGW: 0.6, status: "planned", onlineDate: "2028-06",
+    description: "West Virginia's first certified High Impact Intelligence Center. 548 acres, 1.9M sqft at full build-out. $4B investment. Hyperscaler leasing model. Announced Feb 2026. Adjacent to Northern Virginia Data Center Alley, ~1 hour from Ashburn." },
+
+  { id: "gcp-westvirginia", name: "Google Putnam County", company: "Google Cloud", category: "hyperscaler",
+    lat: 38.6112, lng: -81.9793, location: "Buffalo, Putnam County, West Virginia, USA",
+    powerMW: 300, powerGW: 0.3, status: "planned", onlineDate: "2028-01",
+    description: "Google's first West Virginia campus in Buffalo, Putnam County. Certified High Impact Intelligence Center Mar 2026. 100% renewable electricity. Water replenishment target 120% by 2030. Part of Google's Appalachian corridor expansion.",
+    chips: "Google TPU v6" },
+
+  { id: "gcp-wilbarger", name: "Google Wilbarger County", company: "Google Cloud", category: "hyperscaler",
+    lat: 33.9137, lng: -99.1804, location: "Wilbarger County, Texas, USA",
+    powerMW: 300, powerGW: 0.3, status: "construction", onlineDate: "2027-06",
+    description: "Announced Feb 2026, part of Google's $40B Texas investment. Co-located with AES clean generation — 'power-first' design. Air-cooled to eliminate operational water use. Part of 7,800+ MW of net-new Texas grid capacity contracted by Google.",
+    chips: "Google TPU v6", partner: "AES Corporation" },
+
+  { id: "telekom-munich", name: "Deutsche Telekom AI DC Munich", company: "Deutsche Telekom", category: "sovereign",
+    lat: 48.1351, lng: 11.5820, location: "Munich, Germany",
+    powerMW: 50, powerGW: 0.05, status: "operational", onlineDate: "2026-03",
+    description: "€1B AI data center opened Q1 2026. 1,000+ NVIDIA DGX B200 systems, 10,000 Blackwell GPUs, 500 petaflops. Boosts Germany's national AI compute by ~50%. SAP Business Technology Platform integrated. Co-developed with NVIDIA and SAP.",
+    chips: "NVIDIA DGX B200 / Blackwell", partner: "NVIDIA, SAP" },
+
+  { id: "mistral-ecodc-sweden", name: "Mistral AI EcoDataCenter Sweden", company: "Mistral AI", category: "ai-independent",
+    lat: 62.3908, lng: 17.3069, location: "Sundsvall, Sweden",
+    powerMW: 200, powerGW: 0.2, status: "planned", onlineDate: "2027-06",
+    description: "$1.4B AI data center announced Mar 2026. NVIDIA Vera Rubin GPUs for European sovereign LLM training and inference. 100% renewable hydropower. Largest dedicated AI training facility in Europe independent of US hyperscaler infrastructure.",
+    chips: "NVIDIA Vera Rubin", partner: "EcoDataCenter" },
 ];
 
 // Timeline events with annotations
@@ -590,14 +641,46 @@ const TIMELINE_EVENTS = [
   { date: "2026-03-27", title: "Meta Orders 10 Power Plants", category: "hyperscaler",
     description: "Meta orders 10 gas power plants (7.5 GW) from Entergy for Hyperion campus in Louisiana. Plus 2.5 GW renewables. 30%+ increase to Louisiana's entire grid capacity.",
     impact: "high", companies: ["Meta Platforms", "Entergy"] },
+
+  { date: "2026-03-26", title: "Meta El Paso Scaled to $10B / 1 GW", category: "hyperscaler",
+    description: "Meta confirms El Paso campus grows from $1.5B to $10B investment and scales to 1 GW capacity by 2028. Meta's 29th DC globally. Closed-loop liquid cooling, zero operational water use. Part of Meta's ~30-DC global expansion wave.",
+    impact: "high", companies: ["Meta Platforms"] },
+
+  { date: "2026-03-16", title: "Nscale West Virginia 1.35 GW Microsoft Deal", category: "neocloud",
+    description: "At NVIDIA GTC 2026, Nscale signs Microsoft LOI for 1.35 GW of NVIDIA Vera Rubin NVL72 compute at Monarch Campus, Mason County, West Virginia. Site scalable to 8 GW. US-first AI microgrid certification. Nscale acquires AIPCorp for site control.",
+    impact: "high", companies: ["Nscale", "Microsoft", "NVIDIA"] },
+
+  { date: "2026-03-01", title: "Deutsche Telekom / NVIDIA Munich AI DC Opens", category: "sovereign",
+    description: "Deutsche Telekom and NVIDIA open €1B AI data center in Munich — one of Europe's largest at launch. 10,000 Blackwell GPUs, 500 petaflops. Boosts Germany's national AI compute by ~50%. SAP Business Technology Platform integrated.",
+    impact: "high", companies: ["Deutsche Telekom", "NVIDIA", "SAP"] },
+
+  { date: "2026-02-26", title: "Penzance $4B West Virginia AI Campus", category: "hyperscaler",
+    description: "Penzance Management announces 548-acre, 600 MW Bedington Campus in Berkeley County, WV — state's first certified High Impact Intelligence Center. $4B investment. Hyperscaler leasing model. Close to Northern Virginia Data Center Alley.",
+    impact: "medium", companies: ["Penzance Management"] },
+
+  { date: "2026-02-24", title: "Google Wilbarger County TX — Power-First AI DC", category: "hyperscaler",
+    description: "Google announces AI data center in Wilbarger County, Texas, co-located with AES clean generation. Air-cooled design eliminates operational water use. Part of Google's $40B Texas investment through 2027, covering 7,800+ MW of new grid capacity.",
+    impact: "medium", companies: ["Google Cloud", "AES Corporation"] },
+
+  { date: "2026-03-27", title: "Google West Virginia AI Campus (Putnam County)", category: "hyperscaler",
+    description: "Governor Morrisey confirms Google will build a data center in Buffalo, Putnam County, WV — state's second certified High Impact Intelligence Center. 100% renewable. Part of Google's Appalachian corridor expansion alongside Texas and Midwest sites.",
+    impact: "medium", companies: ["Google Cloud"] },
+
+  { date: "2026-04-01", title: "Crusoe Abilene 900 MW Microsoft Campus", category: "neocloud",
+    description: "Crusoe announces 900 MW AI data center campus at Lancium Clean Campus, Abilene TX for Microsoft workloads. Expands Stargate Site 1 footprint. Direct-to-chip liquid cooling, 100,000 GPUs on unified fabric. 100% renewable via Lancium Smart Response.",
+    impact: "high", companies: ["Crusoe Energy", "Microsoft", "Lancium"] },
+
+  { date: "2026-03-01", title: "Mistral AI / EcoDataCenter $1.4B Sweden AI Factory", category: "ai-independent",
+    description: "Mistral AI and EcoDataCenter announce $1.4B AI data center in Sundsvall, Sweden, using NVIDIA Vera Rubin GPUs. 100% renewable hydropower. Largest sovereign European AI training facility; targets LLM training independent of US hyperscaler infrastructure.",
+    impact: "medium", companies: ["Mistral AI", "EcoDataCenter", "NVIDIA"] },
 ];
 
 // Company metadata for color coding and display
 const COMPANY_CATEGORIES = {
-  hyperscaler: { label: "Hyperscalers", color: "#3b82f6", companies: ["Amazon Web Services", "Microsoft Azure", "Google Cloud", "Meta Platforms", "Oracle Cloud", "Alibaba Cloud", "IBM Cloud", "Huawei"] },
+  hyperscaler: { label: "Hyperscalers", color: "#3b82f6", companies: ["Amazon Web Services", "Microsoft Azure", "Google Cloud", "Meta Platforms", "Oracle Cloud", "Alibaba Cloud", "IBM Cloud", "Huawei", "Penzance Management", "Cologix"] },
   neocloud: { label: "Neoclouds", color: "#f59e0b", companies: ["Nebius", "CoreWeave", "IREN", "Applied Digital", "Lambda Labs", "Nscale", "Mega Or/Mega DC", "Crusoe Energy", "Civo", "Vultr"] },
-  "ai-independent": { label: "AI Independent", color: "#8b5cf6", companies: ["xAI", "Celestica", "Palantir", "Lumentum", "DataVolt", "Anthropic", "Scale AI", "Inflection AI"] },
-  sovereign: { label: "Sovereign/Gov", color: "#10b981", companies: ["HUMAIN", "UK Government", "AdaniConneX", "Reliance Jio", "DAMAC Digital", "Government of Canada", "G42", "SAKURA Internet", "Scaleway", "China Mobile"] },
+  "ai-independent": { label: "AI Independent", color: "#8b5cf6", companies: ["xAI", "Celestica", "Palantir", "Lumentum", "DataVolt", "Anthropic", "Scale AI", "Inflection AI", "Mistral AI"] },
+  sovereign: { label: "Sovereign/Gov", color: "#10b981", companies: ["HUMAIN", "UK Government", "AdaniConneX", "Reliance Jio", "DAMAC Digital", "Government of Canada", "G42", "SAKURA Internet", "Scaleway", "China Mobile", "Deutsche Telekom"] },
   stargate: { label: "Stargate Project", color: "#ef4444", companies: ["Stargate", "OpenAI", "SoftBank", "Oracle"] },
 };
 

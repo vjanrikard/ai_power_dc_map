@@ -1,0 +1,61 @@
+<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
+
+#cd..cdlsls
+ to data_centers for avoid duplicates in data.js
+
+Use this checklist before adding any new object to `DATA_CENTERS` so you avoid duplicate companies, duplicate campuses, or overlapping “network” and site-level entries in `data.js`. Your file already mixes company-wide entries like `coreweave-us` with site-specific entries like `iren-childress`, so the main risk is adding a real site that overlaps an existing broader record.[^1]
+
+## Duplicate checks
+
+- Check whether the **company** already exists anywhere in `DATA_CENTERS`.[^1]
+- Check whether the same **site or campus name** already exists under a different label, for example “Childress” vs “Horizon 1 Childress.”[^1]
+- Check whether the new object overlaps an existing **regional/network entry**, such as a company-wide US network object that already covers the geography you want to add.[^1]
+- Check whether the same facility could appear under both a **campus record** and a **building/phase record**.[^1]
+
+
+## Fields to compare
+
+- `id`: Must be unique and not just a slight spelling variation of an existing id.[^1]
+- `name`: Compare for alternate branding, abbreviations, and phase naming.[^1]
+- `company`: Keep exact naming consistent, such as `Lambda Labs` and `IREN`.[^1]
+- `location`: Compare city, state, and country; many duplicates hide behind slightly different place text.[^1]
+- `lat` and `lng`: Near-identical coordinates often signal the same campus.[^1]
+- `powerMW`: If one object is a campus total and another is a phase total, do not keep both unless you intentionally want parent-and-child entries.[^1]
+
+
+## Add or skip rules
+
+- Add the object if it represents a **truly new site** not already covered in the file.[^1]
+- Skip the object if it is just a renamed version of an existing site.[^1]
+- Skip the object if it is a **subset** of an existing site entry and your map is meant to show one pin per campus.[^1]
+- Skip the object if an existing **broader company object** already serves that company on your map and you do not want overlap.[^1]
+- Add the object only if you can clearly explain why it is distinct: different city, different campus, or different non-overlapping facility.[^1]
+
+
+## Naming rules
+
+- Use one standard for ids: `company-site-name` in lowercase hyphen format.[^1]
+- Use one standard for names: `Company + Site/Campus Name`.[^1]
+- Do not mix campus-wide names and building-phase names unless that structure is used consistently across the file.[^1]
+- Keep company names aligned with your existing category metadata, which already includes `CoreWeave`, `IREN`, `Applied Digital`, and `Lambda Labs`.[^1]
+
+
+## Quick workflow
+
+1. Search `data.js` for company name.[^1]
+2. Search `data.js` for city, campus, and alternative facility name.[^1]
+3. Compare coordinates and power to existing entries.[^1]
+4. Decide whether the new object is a new campus, a duplicate, or a sub-phase of an existing campus.[^1]
+5. Add it only if it passes all four checks: unique id, unique site, non-overlapping scope, consistent naming.[^1]
+
+## Simple decision rule
+
+Use this rule: **one map pin per real-world site unless your dataset intentionally tracks both campus and phase objects**. That rule fits your current structure better and is the safest way to avoid duplicates when adding new entries.[^1]
+<span style="display:none">[^2]</span>
+
+<div align="center">⁂</div>
+
+[^1]: data.js
+
+[^2]: ai_dc-map.xlsx
+
