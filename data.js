@@ -8,7 +8,7 @@ const DATA_CENTERS = [
   
   // AWS
   { id: "aws-indiana", name: "AWS Project Rainier", company: "Amazon Web Services", category: "hyperscaler",
-    lat: 41.7002, lng: -86.1981, location: "New Carlisle, Indiana, USA",
+    lat: 41.7003, lng: -86.1981, location: "New Carlisle, Indiana, USA",
     powerMW: 2250, powerGW: 2.25, status: "operational", onlineDate: "2025-10",
     description: "Amazon's largest AI data center, 1,200 acres, 30 buildings planned. Dedicated to Anthropic AI training with 500,000+ AWS Trainium 2 chips. Operational since Oct 2025.",
     chips: "AWS Trainium 2", partner: "Anthropic" },
@@ -59,7 +59,7 @@ const DATA_CENTERS = [
 
   // Meta
   { id: "meta-hyperion", name: "Meta Hyperion", company: "Meta Platforms", category: "hyperscaler",
-    lat: 32.37, lng: -91.73, location: "Richland Parish, Louisiana, USA",
+    lat: 32.02, lng: -91.88, location: "Richland Parish, Louisiana, USA",
     powerMW: 5000, powerGW: 5.0, status: "construction", onlineDate: "2026-05",
     description: "Largest planned data center in the Western Hemisphere. 3,650 acres. 10 gas power plants (7.5 GW) + 2.5 GW renewables. $27B total via Blue Owl Capital JV. Phase 1: 2 GW.",
     chips: "NVIDIA GB200/GB300", partner: "Entergy, Blue Owl Capital" },
@@ -128,7 +128,7 @@ const DATA_CENTERS = [
     chips: "NVIDIA Blackwell" },
 
   { id: "nebius-vineland", name: "Nebius New Jersey (Vineland)", company: "Nebius", category: "neocloud",
-    lat: 39.4863, lng: -75.0260, location: "Vineland, New Jersey, USA",
+    lat: 39.4863, lng: -75.026, location: "Vineland, New Jersey, USA",
     powerMW: 300, powerGW: 0.3, status: "operational", onlineDate: "2025-06",
     description: "First major US AI data center. ~2.6M sqft. Built by DataOne with Nebius-designed infrastructure. Behind-the-meter islanded microgrid. 300-400 MW capacity. $17B Microsoft contract. 3+ data rooms operational. Liquid-cooled, 100+ kW/rack.",
     chips: "NVIDIA Blackwell", partner: "DataOne, Microsoft" },
@@ -140,7 +140,7 @@ const DATA_CENTERS = [
     chips: "NVIDIA Blackwell" },
 
   { id: "nebius-minnesota", name: "Nebius Minnesota", company: "Nebius", category: "neocloud",
-    lat: 44.9778, lng: -93.2650, location: "Minneapolis, Minnesota, USA",
+    lat: 44.9778, lng: -93.265, location: "Minneapolis, Minnesota, USA",
     powerMW: 100, powerGW: 0.1, status: "planned", onlineDate: "2027-01",
     description: "Planned US expansion site in Minneapolis area. Part of Nebius's goal to reach 16 global data center locations by end of 2026.",
     chips: "NVIDIA GPU" },
@@ -232,7 +232,7 @@ const DATA_CENTERS = [
 
   // IREN
   { id: "iren-childress", name: "IREN Horizon 1 (Childress)", company: "IREN", category: "neocloud",
-    lat: 34.4265, lng: -100.2040, location: "Childress, Texas, USA",
+    lat: 34.4265, lng: -100.204, location: "Childress, Texas, USA",
     powerMW: 75, powerGW: 0.075, status: "operational", onlineDate: "2025-12",
     description: "75 MW liquid-cooled AI/HPC data center. 200kW per rack via direct-to-chip cooling for NVIDIA Blackwell. Part of 750 MW Childress campus.",
     chips: "NVIDIA Blackwell" },
@@ -250,7 +250,7 @@ const DATA_CENTERS = [
     chips: "Next-gen" },
 
   { id: "iren-prince-george", name: "IREN Prince George", company: "IREN", category: "neocloud",
-    lat: 53.9170, lng: -122.7497, location: "Prince George, British Columbia, Canada",
+    lat: 53.917, lng: -122.7497, location: "Prince George, British Columbia, Canada",
     powerMW: 50, powerGW: 0.05, status: "operational", onlineDate: "2023-01",
     description: "50 MW operational data center on a 12-acre freehold site (1144 Crocker Road). Powered entirely by BC Hydro renewable hydroelectricity. Supports 20+ full-time local jobs. Largest city in northern BC.",
     chips: "NVIDIA GPU" },
@@ -262,7 +262,7 @@ const DATA_CENTERS = [
     chips: "NVIDIA GPU" },
 
   { id: "iren-canal-flats", name: "IREN Canal Flats", company: "IREN", category: "neocloud",
-    lat: 50.1500, lng: -115.7700, location: "Canal Flats, British Columbia, Canada",
+    lat: 50.15, lng: -115.77, location: "Canal Flats, British Columbia, Canada",
     powerMW: 30, powerGW: 0.03, status: "operational", onlineDate: "2021-01",
     description: "30 MW operational data center on a 10-acre freehold site in the Canadian Rockies (9018 Grainger Rd). Connected to BC Hydro via IREN-owned 69kV substation. Dual fiber paths. Fabrication workshop supporting other IREN facilities.",
     chips: "NVIDIA GPU" },
@@ -275,16 +275,23 @@ const DATA_CENTERS = [
     chips: "NVIDIA GPU" },
 
   { id: "apld-polaris-forge1", name: "Applied Digital Polaris Forge 1", company: "Applied Digital", category: "neocloud",
-    lat: 46.0006, lng: -98.5250, location: "Ellendale, North Dakota, USA",
+    lat: 46.0006, lng: -98.525, location: "Ellendale, North Dakota, USA",
     powerMW: 180, powerGW: 0.18, status: "operational", onlineDate: "2025-12",
     description: "Ellendale AI/HPC campus listing (Site Code ELN). 180 MW capacity with liquid-cooling design. Datacentermap timeline notes first building reached operational stage in Dec 2025.",
     chips: "NVIDIA GPU", partner: "CoreWeave" },
 
   { id: "apld-polaris-forge2", name: "Applied Digital Polaris Forge 2", company: "Applied Digital", category: "neocloud",
-    lat: 46.9830, lng: -96.8890, location: "Harwood (Fargo area), North Dakota, USA",
+    lat: 46.983, lng: -96.889, location: "Harwood (Fargo area), North Dakota, USA",
     powerMW: 280, powerGW: 0.28, status: "planned", onlineDate: "2026-12",
     description: "Planned AI-focused campus near Harwood in Cass County. Datacentermap lists up to 280 MW with phased launch and full buildout expected by early 2027.",
     chips: "NVIDIA GPU" },
+
+// Crusoe Energy
+  { id: "crusoe-texas", name: "Crusoe AI Data Center", company: "Crusoe Energy", category: "neocloud",
+    lat: 32.0, lng: -100.5, location: "West Texas, USA",
+    powerMW: 200, powerGW: 0.2, status: "construction", onlineDate: "2026-06",
+    description: "AI cloud powered by stranded energy. Stargate partner. Uses flared natural gas and renewable sources for carbon-reduced AI compute.",
+    chips: "NVIDIA H100/GB200" },
 
   // Lambda Labs
   { id: "lambda-chicago", name: "Lambda AI Factory Chicago", company: "Lambda Labs", category: "neocloud",
@@ -307,7 +314,7 @@ const DATA_CENTERS = [
 
   // Nscale
   { id: "nscale-glomfjord", name: "Nscale Glomfjord", company: "Nscale", category: "neocloud",
-    lat: 66.81, lng: 14.10, location: "Glomfjord, Norway",
+    lat: 66.81, lng: 14.1, location: "Glomfjord, Norway",
     powerMW: 60, powerGW: 0.06, status: "operational", onlineDate: "2024-06",
     description: "Located in Norway's Arctic Circle. 100% renewable energy. 30 MW operational, expandable to 60 MW. Best-in-class efficiency.",
     chips: "NVIDIA H100/Blackwell" },
@@ -331,7 +338,7 @@ const DATA_CENTERS = [
     chips: "NVIDIA GPU", partner: "Ionic Digital" },
 
   { id: "nscale-loughton", name: "Nscale Loughton", company: "Nscale", category: "neocloud",
-    lat: 51.6470, lng: 0.0550, location: "Loughton, Essex, UK",
+    lat: 51.647, lng: 0.055, location: "Loughton, Essex, UK",
     powerMW: 50, powerGW: 0.05, status: "planned", onlineDate: "2026-10",
     description: "Nscale's first UK site at Langston Road. Datacentermap describes 50 MW initial AI/HPC capacity with expansion potential to 90 MW and go-live target in Q4 2026.",
     chips: "NVIDIA GB200" },
@@ -342,7 +349,7 @@ const DATA_CENTERS = [
 
   // xAI
   { id: "xai-colossus", name: "xAI Colossus", company: "xAI", category: "ai-independent",
-    lat: 35.1495, lng: -90.0490, location: "Memphis, Tennessee, USA",
+    lat: 35.1495, lng: -90.049, location: "Memphis, Tennessee, USA",
     powerMW: 2000, powerGW: 2.0, status: "operational", onlineDate: "2025-12",
     description: "World's largest single-site AI training installation. 555,000+ NVIDIA GPUs ($18B). 3 buildings: Colossus 1 (500 MW), Colossus 2 (1 GW), Building 3 'MACROHARDRR' (500 MW). On-site gas power plant in Mississippi.",
     chips: "NVIDIA GB200/GB300" },
@@ -368,14 +375,7 @@ const DATA_CENTERS = [
     description: "Critical optical networking infrastructure for AI data center interconnects. Shares up 300% in 2025 driven by AI demand.",
     chips: "Optical transceivers" },
 
-  // Crusoe Energy
-  { id: "crusoe-texas", name: "Crusoe AI Data Center", company: "Crusoe Energy", category: "neocloud",
-    lat: 32.0, lng: -100.5, location: "West Texas, USA",
-    powerMW: 200, powerGW: 0.2, status: "construction", onlineDate: "2026-06",
-    description: "AI cloud powered by stranded energy. Stargate partner. Uses flared natural gas and renewable sources for carbon-reduced AI compute.",
-    chips: "NVIDIA H100/GB200" },
-
-  // DataVolt (Saudi)
+    // DataVolt (Saudi)
   { id: "datavolt-oxagon", name: "DataVolt AI Factory Campus", company: "DataVolt", category: "ai-independent",
     lat: 28.0, lng: 35.0, location: "NEOM Oxagon, Saudi Arabia",
     powerMW: 1500, powerGW: 1.5, status: "construction", onlineDate: "2027-01",
@@ -532,7 +532,7 @@ const DATA_CENTERS = [
     chips: "Google TPU v6", partner: "AES Corporation" },
 
   { id: "telekom-munich", name: "Deutsche Telekom AI DC Munich", company: "Deutsche Telekom", category: "sovereign",
-    lat: 48.1351, lng: 11.5820, location: "Munich, Germany",
+    lat: 48.1351, lng: 11.582, location: "Munich, Germany",
     powerMW: 50, powerGW: 0.05, status: "operational", onlineDate: "2026-03",
     description: "€1B AI data center opened Q1 2026. 1,000+ NVIDIA DGX B200 systems, 10,000 Blackwell GPUs, 500 petaflops. Boosts Germany's national AI compute by ~50%. SAP Business Technology Platform integrated. Co-developed with NVIDIA and SAP.",
     chips: "NVIDIA DGX B200 / Blackwell", partner: "NVIDIA, SAP" },
