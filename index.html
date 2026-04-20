@@ -114,13 +114,96 @@
     </div>
   </section>
 
+  <!-- Data Table -->
+  <section class="data-table-section">
+    <h2 class="section-title">All Projects</h2>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th data-sort="project">Project</th>
+            <th data-sort="company">Company</th>
+            <th data-sort="location">Location</th>
+            <th data-sort="investment">Investment</th>
+            <th data-sort="capacity">Capacity</th>
+            <th data-sort="status">Status</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <p>Data sourced from company announcements, SEC filings, BloombergNEF, and industry reports. Last updated March 2026.</p>
     <p class="footer-note">Power figures represent planned/contracted capacity. Actual operational capacity may differ. This tracker is for informational purposes only.</p>
   </footer>
 
-  <script src="data.js?v=20260405"></script>
-  <script src="app.js?v=20260405"></script>
+  <script>
+    (function () {
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function ensureBanner() {
+        var banner = document.getElementById('runtime-error-banner');
+        if (banner) {
+          return banner;
+        }
+
+        banner = document.createElement('div');
+        banner.id = 'runtime-error-banner';
+        banner.style.position = 'fixed';
+        banner.style.left = '16px';
+        banner.style.right = '16px';
+        banner.style.bottom = '16px';
+        banner.style.zIndex = '99999';
+        banner.style.padding = '12px 14px';
+        banner.style.border = '1px solid #fecaca';
+        banner.style.borderRadius = '10px';
+        banner.style.background = '#7f1d1d';
+        banner.style.color = '#fee2e2';
+        banner.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        banner.style.fontSize = '12px';
+        banner.style.lineHeight = '1.4';
+        banner.style.whiteSpace = 'pre-wrap';
+        banner.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.35)';
+        banner.style.maxHeight = '45vh';
+        banner.style.overflow = 'auto';
+        document.body.appendChild(banner);
+        return banner;
+      }
+
+      function showRuntimeError(kind, message, source) {
+        var safeMessage = escapeHtml(message || 'Unknown error');
+        var safeSource = escapeHtml(source || 'unknown source');
+        var banner = ensureBanner();
+        var time = new Date().toLocaleTimeString();
+        banner.innerHTML =
+          '<strong>Runtime error (' + escapeHtml(kind) + ')</strong> [' + time + ']\\n' +
+          safeMessage + '\\n' +
+          'Source: ' + safeSource;
+      }
+
+      window.addEventListener('error', function (event) {
+        var source = event.filename ? event.filename + ':' + event.lineno + ':' + event.colno : 'window.error';
+        showRuntimeError('error', event.message, source);
+      });
+
+      window.addEventListener('unhandledrejection', function (event) {
+        var reason = event.reason && event.reason.message ? event.reason.message : String(event.reason || 'Promise rejected');
+        showRuntimeError('unhandledrejection', reason, 'Promise');
+      });
+    })();
+  </script>
+
+  <script src="data.js?v=20260420"></script>
+  <script src="app.js?v=20260420"></script>
 </body>
 </html>

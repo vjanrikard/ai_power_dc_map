@@ -32,3 +32,20 @@ node server.js
 - Theme now defaults correctly (`light`/`dark`) and persists in local storage.
 - Map tiles now switch correctly between light and dark basemaps.
 - Server path handling now blocks traversal attempts and ignores query strings when resolving files.
+
+## Data sync summary (2026-04-20)
+
+v1.0 was synced against v1.1 with a "missing only" rule.
+
+Added from v1.1 to v1.0:
+- Stargate UAE
+- Google Pine Island
+- Anthropic / FluidStack - Texas
+
+Not added (already represented in v1.0 under existing projects/aliases):
+- Stargate - Port Washington (covered by Oracle Stargate Wisconsin)
+- Hyperion AI Data Center (covered by Meta Hyperion)
+- Project Rainier (covered by AWS Project Rainier)
+
+Result:
+- `DATA_CENTERS` increased from 108 to 111 entries.

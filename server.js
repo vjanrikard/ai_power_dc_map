@@ -13,6 +13,14 @@ const MIME = {
   '.ico': 'image/x-icon',
 };
 
+const TEXT_MIME_TYPES = new Set([
+  'text/html',
+  'text/css',
+  'application/javascript',
+  'application/json',
+  'image/svg+xml',
+]);
+
 const server = http.createServer((req, res) => {
   const requestPath = decodeURIComponent((req.url || '/').split('?')[0]);
   const normalizedPath = requestPath === '/' ? '/index.html' : path.normalize(requestPath);
@@ -34,7 +42,18 @@ const server = http.createServer((req, res) => {
       res.end('Not found');
       return;
     }
-    res.writeHead(200, { 'Content-Type': `${contentType}; charset=utf-8` });
+
+    const headers = {
+      'Content-Type': TEXT_MIME_TYPES.has(contentType)
+        ? `${contentType}; charset=utf-8`
+        : contentType,
+      // Prevent stale JS/CSS/HTML in browsers while iterating quickly.
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      Pragma: 'no-cache',
+      Expires: '0',
+    };
+
+    res.writeHead(200, headers);
     res.end(data);
   });
 });
