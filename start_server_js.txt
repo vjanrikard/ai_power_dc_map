@@ -1,0 +1,2 @@
+PS C:\github\vjanrikard\finance\datacenter\ai_power_dc_map_v1.0> node server.js
+AI DC Map server running on http://localhost:5000

@@ -1,0 +1,48 @@
+
+    I repository ai_power_dc_map_v1.0 skal data.js struktureres etter ny Template.
+Sjekk innholdet i app.js som ligger i ai_power_dc_map_v1.1 . Datasenter som finnes i app.js men ikke i data.js
+skal kopieres inn i data.js på på ai_power_dc_map_v1.0 repository.
+
+
+
+
+NY TEMPLATE - MAL
+    project: (name: byttes til project)
+    company: 
+    location:
+    lat:   
+    lng:
+    investment:
+    capacity powerMW: powerGW: ,
+    gpu model:
+    size: (sq, ft, acres)     
+    status: "Under Construction" "Online  Date: " "Planned Capasity Date:"
+    description:
+    category: "independent",category: "hyperscaler",
+    region: 
+    source: ,
+
+Seksjon under er kopiert fra index.html på ai_power_dc_map_v1.1. Kopier innholdet inn i index.html på ai_power_dc_map_v1.0. Sjekk etterpå at alt i seksjonen er publisert på siden.
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Projects</h2>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th data-sort="project">Project</th>
+            <th data-sort="company">Company</th>
+            <th data-sort="location">Location</th>
+            <th data-sort="investment">Investment</th>
+            <th data-sort="capacity">Capacity</th>
+            <th data-sort="status">Status</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+
+
