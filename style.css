@@ -875,42 +875,179 @@ body {
 
 /* Responsive */
 @media (max-width: 1100px) {
+  .header-inner {
+    padding: var(--space-2) var(--space-4);
+  }
+
   .main-content {
     grid-template-columns: 1fr;
     height: auto;
   }
+
   .map-container {
-    height: 50vh;
-    min-height: 400px;
+    height: 54dvh;
+    min-height: 340px;
   }
+
   .sidebar {
     border-left: none;
     border-top: 1px solid var(--border);
-    max-height: 400px;
+    max-height: 420px;
   }
+
   .header-stats {
     display: none;
   }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 640px) {
-  .filters-inner {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 10px 12px;
     gap: var(--space-2);
   }
+
+  .logo-title {
+    font-size: 1rem;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .filters-inner {
+    padding: 0 12px;
+    gap: var(--space-2);
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-2);
+    align-items: center;
+  }
+
+  .filter-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 2px;
+  }
+
+  .filter-chip {
+    flex: 0 0 auto;
+  }
+
+  .search-group {
+    display: block;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .map-container {
+    height: 52dvh;
+    min-height: 300px;
+  }
+
+  .sidebar {
+    max-height: 42dvh;
+  }
+
+  .sidebar-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--bg-elevated);
+  }
+
+  .sidebar-tabs {
+    position: sticky;
+    top: 49px;
+    z-index: 2;
+    background: var(--bg-elevated);
+  }
+
+  .timeline-section,
+  .stats-section,
+  .footer,
+  .data-table-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .timeline-track {
+    min-width: 1600px;
+  }
+
+  .stat-card {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  #data-table {
+    min-width: 680px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .main-content {
+    min-height: 0;
+  }
+
+  .map-container {
+    height: 48dvh;
+    min-height: 280px;
+  }
+
+  .sidebar {
+    max-height: 44dvh;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-label {
+    font-size: 11px;
+  }
+
+  .filter-chip {
+    padding: 4px 10px;
+  }
+
   .search-group {
     margin-left: 0;
     width: 100%;
   }
+
   .search-input {
     width: 100%;
   }
+
   .timeline-track {
-    min-width: 1800px;
+    min-width: 1400px;
   }
 }
 

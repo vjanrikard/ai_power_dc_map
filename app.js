@@ -16,6 +16,9 @@
   };
   let activeTab = 'list';
 
+  // Table sort state
+  let tableSort = { column: 'capacity', asc: false };
+
   // ─── Init ───
   function init() {
     initTheme();
@@ -29,6 +32,8 @@
     renderStats();
     renderHeaderStats();
     renderLegend();
+    initTable();
+    renderTable();
   }
 
   // ─── Theme Toggle ───
@@ -142,13 +147,20 @@
     });
   }
 
+  // Stable per-entry key: use explicit id if present, otherwise derive from project/name
+  function dcKey(dc) {
+    if (dc.id) return dc.id;
+    const s = (dc.project || dc.name || '').toString().toLowerCase();
+    return s.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
   function getFilteredDCs() {
     return DATA_CENTERS.filter(dc => {
       if (!activeFilters.categories.has(dc.category)) return false;
       if (!activeFilters.statuses.has(dc.status)) return false;
       if (activeFilters.search) {
         const q = activeFilters.search;
-        const searchable = `${dc.name} ${dc.company} ${dc.location} ${dc.description}`.toLowerCase();
+        const searchable = `${dc.project || dc.name || ''} ${dc.company} ${dc.location} ${dc.description}`.toLowerCase();
         if (!searchable.includes(q)) return false;
       }
       return true;
@@ -159,6 +171,7 @@
     renderMarkers();
     renderSidebar();
     renderStats();
+    renderTable();
   }
 
   // ─── Tabs ───
@@ -231,7 +244,7 @@
 
     return `<div class="popup-inner">
       <div class="popup-category" style="color:${catColor}">${catLabel}</div>
-      <div class="popup-name">${dc.name}</div>
+      <div class="popup-name">${dc.project || dc.name || ''}</div>
       <div class="popup-company">${dc.company} — <span class="popup-location">${locationLabel}</span></div>
       <div class="popup-meta">
         <div class="popup-meta-item">
@@ -249,12 +262,21 @@
           <span class="popup-meta-value">${dateStr}</span>
         </div>
         <div class="popup-meta-item">
-          <span class="popup-meta-label">Chips</span>
-          <span class="popup-meta-value">${dc.chips || 'N/A'}</span>
+          <span class="popup-meta-label">GPU Model</span>
+          <span class="popup-meta-value">${dc.gpuModel || dc.chips || 'N/A'}</span>
         </div>
+        ${dc.investment ? `<div class="popup-meta-item">
+          <span class="popup-meta-label">Investment</span>
+          <span class="popup-meta-value">${dc.investment}</span>
+        </div>` : ''}
+        ${dc.size ? `<div class="popup-meta-item">
+          <span class="popup-meta-label">Size</span>
+          <span class="popup-meta-value">${dc.size}</span>
+        </div>` : ''}
       </div>
       ${dc.partner ? `<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--space-2)"><strong>Partners:</strong> ${dc.partner}</div>` : ''}
       <div class="popup-desc">${dc.description}</div>
+      ${dc.source ? `<div style="font-size:var(--text-xs);margin-top:var(--space-2)"><a href="${dc.source}" target="_blank" rel="noopener" style="color:${catColor}">Source &#8599;</a></div>` : ''}
     </div>`;
   }
 
@@ -284,10 +306,10 @@
       const flag = getCountryFlag(dc.location);
       const locationLabel = `${flag ? `${flag} ` : ''}${dc.location}`;
 
-      return `<div class="dc-card" data-dc-id="${dc.id}">
+      return `<div class="dc-card" data-dc-id="${dcKey(dc)}">
         <div class="dc-card-header">
           <div>
-            <div class="dc-card-name"><span class="dc-card-cat" style="background:${catColor}"></span>${dc.name}</div>
+            <div class="dc-card-name"><span class="dc-card-cat" style="background:${catColor}"></span>${dc.project || dc.name || ''}</div>
             <div class="dc-card-company">${dc.company}</div>
           </div>
           <div class="dc-card-power">${powerDisplay}</div>
@@ -303,10 +325,10 @@
     container.querySelectorAll('.dc-card').forEach(card => {
       card.addEventListener('click', () => {
         const dcId = card.dataset.dcId;
-        const dc = DATA_CENTERS.find(d => d.id === dcId);
+        const dc = DATA_CENTERS.find(d => dcKey(d) === dcId);
         if (dc) {
           map.flyTo([dc.lat, dc.lng], 8, { duration: 1 });
-          const markerIdx = getFilteredDCs().findIndex(d => d.id === dcId);
+          const markerIdx = getFilteredDCs().findIndex(d => dcKey(d) === dcId);
           if (markers[markerIdx]) {
             markers[markerIdx].openPopup();
           }
@@ -622,8 +644,100 @@
     Canada: 'CA',
     India: 'IN',
     Singapore: 'SG',
-    UAE: 'AE'
+    UAE: 'AE',
+    Brazil: 'BR',
+    Australia: 'AU',
+    Indonesia: 'ID',
+    Vietnam: 'VN',
+    Thailand: 'TH',
+    Portugal: 'PT',
+    Kazakhstan: 'KZ'
   };
+
+  // ─── Data Table ───
+  function initTable() {
+    document.querySelectorAll('#data-table th[data-sort]').forEach(function(th) {
+      th.addEventListener('click', function() {
+        const col = th.dataset.sort;
+        if (tableSort.column === col) {
+          tableSort.asc = !tableSort.asc;
+        } else {
+          tableSort.column = col;
+          tableSort.asc = true;
+        }
+        renderTable();
+      });
+    });
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('table-body');
+    if (!tbody) return;
+    const rows = getFilteredDCs().slice();
+
+    const col = tableSort.column;
+    rows.sort(function(a, b) {
+      let av, bv;
+      if (col === 'project') { av = a.project || a.name || ''; bv = b.project || b.name || ''; }
+      else if (col === 'company') { av = a.company || ''; bv = b.company || ''; }
+      else if (col === 'location') { av = a.location || ''; bv = b.location || ''; }
+      else if (col === 'capacity') { av = a.powerMW || 0; bv = b.powerMW || 0; }
+      else if (col === 'status') { av = a.status || ''; bv = b.status || ''; }
+      else if (col === 'investment') {
+        const num = function(s) {
+          if (!s) return 0;
+          const m = String(s).match(/([\d.]+)\s*(B|M|T)?/i);
+          if (!m) return 0;
+          const n = parseFloat(m[1]);
+          const mult = { b: 1e9, m: 1e6, t: 1e12 }[(m[2] || '').toLowerCase()] || 1;
+          return n * mult;
+        };
+        av = num(a.investment); bv = num(b.investment);
+      }
+      if (typeof av === 'number' && typeof bv === 'number') {
+        return tableSort.asc ? av - bv : bv - av;
+      }
+      return tableSort.asc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+    });
+
+    tbody.innerHTML = rows.map(function(dc) {
+      const statusCfg = STATUS_CONFIG[dc.status] || { label: dc.status, color: '#999', icon: '' };
+      const catColor = (COMPANY_CATEGORIES[dc.category] || {}).color || '#999';
+      const powerDisplay = (dc.powerGW && dc.powerGW >= 1) ? dc.powerGW.toFixed(2) + ' GW' : (dc.powerMW || 0) + ' MW';
+      const projectName = dc.project || dc.name || '';
+      const investment = dc.investment || '—';
+      const flag = getCountryFlag(dc.location);
+      const projectCell = dc.source
+        ? '<a href="' + dc.source + '" target="_blank" rel="noopener" style="color:' + catColor + ';text-decoration:none">' + projectName + '</a>'
+        : projectName;
+      return '<tr data-dc-id="' + dcKey(dc) + '">' +
+        '<td><span class="table-cat-dot" style="background:' + catColor + '"></span>' + projectCell + '</td>' +
+        '<td>' + (dc.company || '') + '</td>' +
+        '<td>' + (flag ? flag + ' ' : '') + (dc.location || '') + '</td>' +
+        '<td>' + investment + '</td>' +
+        '<td>' + powerDisplay + '</td>' +
+        '<td><span class="table-status" style="color:' + statusCfg.color + '">' + (statusCfg.icon || '') + ' ' + statusCfg.label + '</span></td>' +
+        '</tr>';
+    }).join('');
+
+    document.querySelectorAll('#data-table th[data-sort]').forEach(function(th) {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.sort === tableSort.column) {
+        th.classList.add(tableSort.asc ? 'sort-asc' : 'sort-desc');
+      }
+    });
+
+    tbody.querySelectorAll('tr[data-dc-id]').forEach(function(row) {
+      row.addEventListener('click', function() {
+        const dcId = row.dataset.dcId;
+        const dc = DATA_CENTERS.find(function(d) { return dcKey(d) === dcId; });
+        if (dc) {
+          map.flyTo([dc.lat, dc.lng], 8, { duration: 1 });
+          document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+  }
 
   // ─── Start ───
   document.addEventListener('DOMContentLoaded', init);
