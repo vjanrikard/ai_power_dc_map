@@ -97,28 +97,7 @@
 
   // ─── Filters ───
   function initFilters() {
-    // All-in-one filter row
-    const allFilters = document.getElementById('allFilters');
-    allFilters.innerHTML = '';
-    const filterDefs = [
-      { key: 'all', label: 'All Projects' },
-      ...Object.entries(COMPANY_CATEGORIES).map(([key, cat]) => ({ key, label: cat.label })),
-      { key: 'global', label: 'Global' },
-      { key: 'europe', label: 'Europe' },
-      { key: 'asia', label: 'Asia-Pacific' },
-      { key: 'middleeast', label: 'Middle East' },
-      { key: 'latam', label: 'Latin America' }
-    ];
-    filterDefs.forEach(def => {
-      const chip = document.createElement('button');
-      chip.className = 'filter-chip active';
-      chip.dataset.filter = def.key;
-      chip.textContent = def.label;
-      chip.addEventListener('click', () => toggleMainFilter(def.key, chip));
-      allFilters.appendChild(chip);
-    });
-
-    // Status filters in header
+    // Status filters (rad 1)
     const statusHeader = document.getElementById('headerStatusFilters');
     statusHeader.innerHTML = '';
     Object.entries(STATUS_CONFIG).forEach(([key, st]) => {
@@ -129,6 +108,66 @@
       chip.addEventListener('click', () => toggleStatusFilter(key, chip));
       statusHeader.appendChild(chip);
     });
+
+    // Kategorifilter (rad 2)
+    const catContainer = document.getElementById('categoryFilters');
+    catContainer.innerHTML = '';
+    const categoryDefs = [
+      { key: 'all', label: 'All Projects', color: '#888' },
+      { key: 'hyperscaler', label: 'Hyperscalers', color: COMPANY_CATEGORIES.hyperscaler?.color },
+      { key: 'neocloud', label: 'Neoclouds', color: COMPANY_CATEGORIES.neocloud?.color },
+      { key: 'sovereign', label: 'Sovereign/Gov', color: COMPANY_CATEGORIES.sovereign?.color },
+      { key: 'independent', label: 'Independent', color: COMPANY_CATEGORIES.independent?.color },
+      { key: 'stargate', label: 'Stargate Project', color: COMPANY_CATEGORIES.stargate?.color }
+    ];
+    categoryDefs.forEach(def => {
+      const chip = document.createElement('button');
+      chip.className = 'filter-chip active';
+      chip.dataset.category = def.key;
+      chip.textContent = def.label;
+      if (def.color) chip.style.borderColor = def.color;
+      chip.addEventListener('click', () => toggleCategoryMain(def.key, chip));
+      catContainer.appendChild(chip);
+    });
+
+    // Regionfilter (rad 3)
+    const regionContainer = document.getElementById('regionFilters');
+    regionContainer.innerHTML = '';
+    const regionDefs = [
+      { key: 'global', label: 'Global', color: '#3b82f6' },
+      { key: 'africa', label: 'Africa', color: '#f59e42' },
+      { key: 'europe', label: 'Europe', color: '#10b981' },
+      { key: 'northamerica', label: 'North America', color: '#6366f1' },
+      { key: 'asiapacific', label: 'Asia_Pacific', color: '#f43f5e' },
+      { key: 'southamerica', label: 'South America', color: '#fbbf24' }
+    ];
+    regionDefs.forEach(def => {
+      const chip = document.createElement('button');
+      chip.className = 'filter-chip active';
+      chip.dataset.region = def.key;
+      chip.textContent = def.label;
+      if (def.color) chip.style.borderColor = def.color;
+      chip.addEventListener('click', () => toggleRegionMain(def.key, chip));
+      regionContainer.appendChild(chip);
+    });
+  }
+
+  function toggleCategoryMain(key, chip) {
+    document.querySelectorAll('#categoryFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+    chip.classList.add('active');
+    if (key === 'all') {
+      activeFilters.categories = new Set(Object.keys(COMPANY_CATEGORIES));
+    } else {
+      activeFilters.categories = new Set([key]);
+    }
+    applyFilters();
+  }
+
+  function toggleRegionMain(key, chip) {
+    document.querySelectorAll('#regionFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilters.region = key;
+    applyFilters();
   }
 
   function toggleMainFilter(key, chip) {
