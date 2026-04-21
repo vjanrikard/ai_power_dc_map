@@ -1,3 +1,64 @@
+/* Ny header-layout */
+.header-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+.header-logo-col {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  height: 96px;
+}
+.header-logo {
+  height: 96px;
+  width: auto;
+  object-fit: contain;
+  margin-top: 0;
+}
+.header-filters-col {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.header-theme-col {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+}
+.status-row { margin-bottom: 2px; }
+.category-row { margin-bottom: 2px; }
+.region-row { margin-bottom: 2px; }
+
+#categoryFilters .filter-chip,
+#regionFilters .filter-chip {
+  font-size: 0.85em;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+#categoryFilters .filter-chip.active,
+#regionFilters .filter-chip.active {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-glow);
+}
 /* Header layout for status filters and filter chips */
 .header-row-1 {
   display: flex;
