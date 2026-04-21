@@ -2757,7 +2757,7 @@ const COMPANY_CATEGORIES = {
 // Status colors
 const STATUS_CONFIG = {
   "operational": {
-    "label": "Online",
+  "label": "Operational",
     "color": "#22c55e",
     "icon": "●"
   },
@@ -2836,4 +2836,8 @@ const SEMICONDUCTOR_COMPANIES = [
     "role": "Gaudi AI accelerators and foundry services. Restructuring for AI era."
   }
 ];
-
+// Attach globals for app.js compatibility
+window.DATA_CENTERS = DATA_CENTERS;
+window.COMPANY_CATEGORIES = COMPANY_CATEGORIES;
+window.STATUS_CONFIG = STATUS_CONFIG;
+window.SEMICONDUCTOR_COMPANIES = SEMICONDUCTOR_COMPANIES;
