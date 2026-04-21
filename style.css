@@ -1,3 +1,81 @@
+/* Header layout for status filters and filter chips */
+.header-row-1 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+.header-row-2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+#allFilters {
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.82em;
+}
+
+.header-status-filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: var(--space-4);
+}
+.header-status-filters .filter-chip {
+  font-size: var(--text-xs);
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+.header-status-filters .filter-chip.active {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-glow);
+}
+.filters-single-row {
+  gap: var(--space-2);
+  flex-wrap: nowrap;
+}
+
+#allFilters {
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  font-size: 0.85em;
+}
+
+.header-status-filters {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-left: var(--space-6);
+  margin-top: 2px;
+}
+.header-status-filters .filter-chip {
+  font-size: var(--text-xs);
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+.header-status-filters .filter-chip.active {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-glow);
+}
 /* ═══════════════════════════════════════
    AI Power DC Map — Stylesheet
    Theme: Dark tech/data visualization

@@ -2757,7 +2757,7 @@ const COMPANY_CATEGORIES = {
 // Status colors
 const STATUS_CONFIG = {
   "operational": {
-    "label": "Operational",
+    "label": "Online",
     "color": "#22c55e",
     "icon": "●"
   },

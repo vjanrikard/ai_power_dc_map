@@ -12,6 +12,7 @@
   let activeFilters = {
     categories: new Set(Object.keys(COMPANY_CATEGORIES)),
     statuses: new Set(Object.keys(STATUS_CONFIG)),
+    region: null,
     search: ''
   };
   let activeTab = 'list';
@@ -96,26 +97,59 @@
 
   // ─── Filters ───
   function initFilters() {
-    const catContainer = document.getElementById('categoryFilters');
-    Object.entries(COMPANY_CATEGORIES).forEach(([key, cat]) => {
+    // All-in-one filter row
+    const allFilters = document.getElementById('allFilters');
+    allFilters.innerHTML = '';
+    const filterDefs = [
+      { key: 'all', label: 'All Projects' },
+      ...Object.entries(COMPANY_CATEGORIES).map(([key, cat]) => ({ key, label: cat.label })),
+      { key: 'global', label: 'Global' },
+      { key: 'europe', label: 'Europe' },
+      { key: 'asia', label: 'Asia-Pacific' },
+      { key: 'middleeast', label: 'Middle East' },
+      { key: 'latam', label: 'Latin America' }
+    ];
+    filterDefs.forEach(def => {
       const chip = document.createElement('button');
       chip.className = 'filter-chip active';
-      chip.dataset.category = key;
-      chip.innerHTML = `<span class="chip-dot" style="background:${cat.color}"></span>${cat.label}`;
-      chip.addEventListener('click', () => toggleCategoryFilter(key, chip));
-      catContainer.appendChild(chip);
+      chip.dataset.filter = def.key;
+      chip.textContent = def.label;
+      chip.addEventListener('click', () => toggleMainFilter(def.key, chip));
+      allFilters.appendChild(chip);
     });
 
-    const statusContainer = document.getElementById('statusFilters');
+    // Status filters in header
+    const statusHeader = document.getElementById('headerStatusFilters');
+    statusHeader.innerHTML = '';
     Object.entries(STATUS_CONFIG).forEach(([key, st]) => {
       const chip = document.createElement('button');
       chip.className = 'filter-chip active';
       chip.dataset.status = key;
-      chip.innerHTML = `<span class="chip-dot" style="background:${st.color}"></span>${st.label}`;
+      chip.textContent = st.label;
       chip.addEventListener('click', () => toggleStatusFilter(key, chip));
-      statusContainer.appendChild(chip);
+      statusHeader.appendChild(chip);
     });
   }
+
+  function toggleMainFilter(key, chip) {
+    // Only one region/category filter active at a time except 'all'
+    document.querySelectorAll('#allFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+    chip.classList.add('active');
+    // Set filter state
+    if (key === 'all') {
+      activeFilters.categories = new Set(Object.keys(COMPANY_CATEGORIES));
+      activeFilters.region = null;
+    } else if (COMPANY_CATEGORIES[key]) {
+      activeFilters.categories = new Set([key]);
+      activeFilters.region = null;
+    } else {
+      activeFilters.categories = new Set(Object.keys(COMPANY_CATEGORIES));
+      activeFilters.region = key;
+    }
+    applyFilters();
+  }
+
+  // Region filter logic in getFilteredDCs
 
   function toggleCategoryFilter(key, chip) {
     if (activeFilters.categories.has(key)) {
@@ -157,6 +191,16 @@
   function getFilteredDCs() {
     return DATA_CENTERS.filter(dc => {
       if (!activeFilters.categories.has(dc.category)) return false;
+      if (activeFilters.region) {
+        const regionMap = {
+          global: () => true,
+          europe: () => /france|germany|uk|finland|sweden|norway|iceland|spain|italy|portugal|denmark|netherlands|switzerland|belgium|austria|ireland|poland|estonia|lithuania|latvia|czech|slovakia|hungary|romania|bulgaria|croatia|serbia|slovenia|greece|luxembourg|monaco|liechtenstein|andorra|malta|san marino|vatican/i.test(dc.location),
+          asia: () => /china|japan|south korea|singapore|india|israel|uae|saudi|indonesia|malaysia|taiwan|hong kong|thailand|vietnam|philippines|pakistan|bangladesh|sri lanka|kazakhstan|uzbekistan|turkmenistan|kyrgyzstan|tajikistan|mongolia|nepal|myanmar|cambodia|laos|brunei|maldives|afghanistan/i.test(dc.location),
+          middleeast: () => /uae|saudi|israel|qatar|oman|bahrain|kuwait|jordan|lebanon|syria|iraq|iran|yemen|palestine|turkey/i.test(dc.location),
+          latam: () => /brazil|mexico|argentina|chile|colombia|peru|venezuela|ecuador|guatemala|cuba|bolivia|haiti|dominican|honduras|paraguay|nicaragua|el salvador|costa rica|panama|uruguay|jamaica|trinidad|guyana|suriname|belize|barbados|saint lucia|grenada|saint vincent|antigua|dominica|saint kitts|bahamas|caribbean/i.test(dc.location)
+        };
+        if (!regionMap[activeFilters.region]?.()) return false;
+      }
       if (!activeFilters.statuses.has(dc.status)) return false;
       if (activeFilters.search) {
         const q = activeFilters.search;

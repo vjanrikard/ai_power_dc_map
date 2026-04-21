@@ -1,0 +1,11 @@
+Instructions #1
+
+
+Put the logo first on left side, size three (3) rows. Logo in root folder for ai_power_dc_map
+Colours: each category have an colour and all items in the different categories shall have the same colour as category name.
+Look at picture: colours in folder for ai_power_dc_map.
+
+Online			All Projects	Sovereign/Gov		Global		Europe				
+Under Construction	Hyperscalers 	Stargate Project 	Africa		North America					
+Planned			Neoclouds	Independent		Asia_Pacific	South America
+
