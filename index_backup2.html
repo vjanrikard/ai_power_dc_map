@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Power DC Map — Global GW Tracker</title>
+  <title>AI Power Data Center Map — Global GW Tracker</title>
   <meta name="description" content="Interactive map and timeline tracking all major AI data centers worldwide, their power capacity in GW/MW, and key industry events.">
 
   <!-- Fonts -->
@@ -16,23 +16,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- ── Header ──────────────────────────────────── -->
+  <!-- Header -->
   <header class="header">
     <div class="header-inner">
       <div class="logo-area">
-        <svg class="logo-icon" viewBox="0 0 40 40" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AI Power DC Map">
+        <svg class="logo-icon" viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AI Power DC Map">
           <rect x="2" y="2" width="36" height="36" rx="8" stroke="currentColor" stroke-width="2"/>
-          <circle cx="20" cy="14" r="5" stroke="#3b82f6" stroke-width="2"/>
-          <path d="M11 28 L20 21 L29 28" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="20" y1="21" x2="20" y2="33" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="11" cy="28" r="2.5" fill="#8b5cf6"/>
-          <circle cx="29" cy="28" r="2.5" fill="#ef4444"/>
+          <circle cx="20" cy="16" r="5" stroke="#3b82f6" stroke-width="2"/>
+          <path d="M12 28 L20 22 L28 28" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="22" x2="20" y2="32" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="28" r="2" fill="#8b5cf6"/>
+          <circle cx="28" cy="28" r="2" fill="#ef4444"/>
         </svg>
-        <div class="logo-text-block">
+        <div>
           <h1 class="logo-title">AI Power DC Map</h1>
           <span class="logo-sub">Global Data Center GW Tracker</span>
-          <span class="logo-sub2">Updated April 2026</span>
         </div>
       </div>
       <div class="header-stats" id="headerStats"></div>
@@ -42,44 +40,32 @@
     </div>
   </header>
 
-  <!-- ── Filter Bar ─────────────────────────────── -->
+  <!-- Filters -->
   <div class="filters-bar">
     <div class="filters-inner">
-
-      <!-- Status -->
-      <div class="filter-group">
-        <span class="filter-label">Status:</span>
-        <div class="filter-chips" id="statusFilters"></div>
-      </div>
-
-      <!-- Category -->
       <div class="filter-group">
         <span class="filter-label">Category:</span>
         <div class="filter-chips" id="categoryFilters"></div>
       </div>
-
-      <!-- Search -->
+      <div class="filter-group">
+        <span class="filter-label">Status:</span>
+        <div class="filter-chips" id="statusFilters"></div>
+      </div>
       <div class="filter-group search-group">
         <input type="text" class="search-input" id="searchInput" placeholder="Search company or location..." aria-label="Search data centers">
-      </div>
-
-    </div>
-
-    <!-- Region row -->
-    <div class="filters-inner filters-region">
-      <div class="filter-group">
-        <span class="filter-label">Region:</span>
-        <div class="filter-chips" id="regionFilters"></div>
       </div>
     </div>
   </div>
 
-  <!-- ── Main: Map + Sidebar ─────────────────────── -->
+  <!-- Main Content: Map + Sidebar -->
   <main class="main-content">
+    <!-- Map -->
     <div class="map-container">
       <div id="map"></div>
       <div class="map-legend" id="mapLegend"></div>
     </div>
+
+    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <h2 class="sidebar-title">Data Centers</h2>
@@ -93,7 +79,7 @@
     </aside>
   </main>
 
-  <!-- ── Timeline ────────────────────────────────── -->
+  <!-- Timeline -->
   <section class="timeline-section" id="timelineSection">
     <div class="timeline-header">
       <h2 class="section-title">AI Data Center Timeline</h2>
@@ -106,7 +92,7 @@
     </div>
   </section>
 
-  <!-- ── Stats ───────────────────────────────────── -->
+  <!-- Summary Stats -->
   <section class="stats-section">
     <div class="stats-grid">
       <div class="stat-card">
@@ -128,33 +114,13 @@
     </div>
   </section>
 
-  <!-- ── All Projects Table ─────────────────────── -->
-  <section class="data-table-section">
-    <h2 class="section-title">All Projects</h2>
-    <div class="table-wrapper">
-      <table id="data-table">
-        <thead>
-          <tr>
-            <th data-sort="project">Project</th>
-            <th data-sort="company">Company</th>
-            <th data-sort="location">Location</th>
-            <th data-sort="investment">Investment</th>
-            <th data-sort="capacity">Capacity</th>
-            <th data-sort="status">Status</th>
-          </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ── Footer ──────────────────────────────────── -->
+  <!-- Footer -->
   <footer class="footer">
-    <p>Data sourced from company announcements, SEC filings, BloombergNEF, and industry reports. Last updated April 2026.</p>
+    <p>Data sourced from company announcements, SEC filings, BloombergNEF, and industry reports. Last updated March 2026.</p>
     <p class="footer-note">Power figures represent planned/contracted capacity. Actual operational capacity may differ. This tracker is for informational purposes only.</p>
   </footer>
 
-  <script src="data.js?v=20260424"></script>
-  <script src="app.js?v=20260424"></script>
+  <script src="data.js?v=20260405"></script>
+  <script src="app.js?v=20260405"></script>
 </body>
 </html>
